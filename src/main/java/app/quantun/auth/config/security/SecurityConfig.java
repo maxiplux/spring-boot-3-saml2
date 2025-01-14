@@ -12,6 +12,11 @@ import org.springframework.security.config.annotation.web.configurers.AbstractHt
 import org.springframework.security.saml2.provider.service.metadata.OpenSaml4MetadataResolver;
 import org.springframework.security.saml2.provider.service.metadata.OpenSamlMetadataResolver;
 import org.springframework.security.saml2.provider.service.metadata.Saml2MetadataResolver;
+import org.springframework.security.saml2.provider.service.registration.RelyingPartyRegistrationRepository;
+import org.springframework.security.saml2.provider.service.web.DefaultRelyingPartyRegistrationResolver;
+import org.springframework.security.saml2.provider.service.web.RelyingPartyRegistrationResolver;
+import org.springframework.security.saml2.provider.service.web.authentication.OpenSaml4AuthenticationRequestResolver;
+import org.springframework.security.saml2.provider.service.web.authentication.Saml2AuthenticationRequestResolver;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
@@ -89,6 +94,14 @@ public class SecurityConfig   {
     public Saml2MetadataResolver saml2MetadataResolver() {
         return new OpenSaml4MetadataResolver();
     }
+
+//    @Bean
+//    public Saml2AuthenticationRequestResolver authenticationRequestResolver(RelyingPartyRegistrationRepository registrations) {
+//        RelyingPartyRegistrationResolver registrationResolver =   new DefaultRelyingPartyRegistrationResolver(registrations);
+//        OpenSaml4AuthenticationRequestResolver authenticationRequestResolver =                new OpenSaml4AuthenticationRequestResolver(registrationResolver);
+//        authenticationRequestResolver.setAuthnRequestCustomizer((context) -> context                .getAuthnRequest().setForceAuthn(true));
+//        return authenticationRequestResolver;
+//    }
 
 
 }
