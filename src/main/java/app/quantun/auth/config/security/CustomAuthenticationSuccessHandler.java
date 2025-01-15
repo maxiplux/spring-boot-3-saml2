@@ -8,8 +8,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.saml2.provider.service.authentication.DefaultSaml2AuthenticatedPrincipal;
-import org.springframework.security.saml2.provider.service.authentication.Saml2Authentication;
+
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
 
@@ -26,34 +25,13 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException
     {
-        // Custom logic after successful authentication
-        log.info("Authentication successful for user: {}", authentication.getName());
-        if (authentication instanceof Saml2Authentication) {
 
-            List<String> authorities = authentication.getAuthorities().stream()
-                    .map(authority -> authority.getAuthority())
-                    .collect(Collectors.toList());
 
-            Saml2Authentication saml2Auth = (Saml2Authentication) authentication;
-            Map<String, List<Object>> attributes =
-                    ((DefaultSaml2AuthenticatedPrincipal) saml2Auth.getPrincipal()).getAttributes();
-
-            CustomUserDTO userDTO = CustomUserDTO.builder()
-                    .username(getSingleAttribute(attributes, "saml_subject"))
-                    .email(getSingleAttribute(attributes, "emailaddress/emailaddress"))
-                    .groups(authorities)
-                    .givenName(getSingleAttribute(attributes, "givenname/givenname"))
-                    .authorities(new ArrayList<>(authentication.getAuthorities()))
-                    .build();
-
-            HttpSession session = request.getSession();
-            session.setAttribute("USER_DTO", userDTO);
-
-            log.info("User successfully authenticated: {}", userDTO.getUsername());
+            //log.info("User successfully authenticated: {}", userDTO.getUsername());
 
 
             response.sendRedirect("/app/dashboard"); // Redirect to dashboard after login
-        }
+
 
     }
 
