@@ -5,13 +5,11 @@ import app.quantun.auth.models.CustomUserDTO;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.security.Principal;
 import java.util.Map;
 
 @Controller
@@ -31,7 +29,7 @@ public class SamlController {
     }
 
     @GetMapping("/dashboard")
-    @PreAuthorize("hasAuthority('ROLE_USER')")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public String dashboard(HttpSession session) {
         CustomUserDTO userDTO = (CustomUserDTO) session.getAttribute("USER_DTO");
         return "dashboard";
