@@ -15,7 +15,7 @@ java {
 
 
 
-// okay
+
 configurations {
     compileOnly {
         extendsFrom annotationProcessor

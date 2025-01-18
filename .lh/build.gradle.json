@@ -1,0 +1,18 @@
+{
+    "sourceFile": "build.gradle",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1737224844125,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1737224844125,
+            "name": "Commit-0",
+            "content": "plugins {\r\n    id 'java'\r\n    id 'org.springframework.boot' version '3.4.1'\r\n    id 'io.spring.dependency-management' version '1.1.7'\r\n}\r\n\r\ngroup = 'app.quantun'\r\nversion = '0.0.1-SNAPSHOT'\r\n\r\njava {\r\n    toolchain {\r\n        languageVersion = JavaLanguageVersion.of(17)\r\n    }\r\n}\r\n\r\n\r\n\r\n\r\nconfigurations {\r\n    compileOnly {\r\n        extendsFrom annotationProcessor\r\n    }\r\n}\r\n\r\nrepositories {\r\n    mavenCentral()\r\n    maven {\r\n        url \"https://build.shibboleth.net/nexus/content/repositories/releases/\"\r\n    }\r\n}\r\n\r\next {\r\n    set('springCloudAzureVersion', \"5.19.0\")\r\n}\r\n\r\ndependencies {\r\n    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'\r\n    implementation 'org.springframework.boot:spring-boot-starter-actuator'\r\n////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////\r\n    implementation 'org.springframework.boot:spring-boot-starter-security'\r\n    implementation 'org.springframework.security:spring-security-saml2-service-provider'\r\n\r\n    implementation 'org.opensaml:opensaml-core:4.3.2'\r\n    implementation 'org.opensaml:opensaml-saml-api:4.3.2'\r\n    implementation 'org.opensaml:opensaml-saml-impl:4.3.2'\r\n\r\n    // https://mvnrepository.com/artifact/org.bouncycastle/bcprov-jdk18on\r\n    implementation 'org.bouncycastle:bcprov-jdk18on:1.79'\r\n\r\n\r\n////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////\r\n    implementation 'org.springframework.boot:spring-boot-starter-web'\r\n\r\n    compileOnly 'org.projectlombok:lombok'\r\n    developmentOnly 'org.springframework.boot:spring-boot-devtools'\r\n    annotationProcessor 'org.projectlombok:lombok'\r\n    testImplementation 'org.springframework.boot:spring-boot-starter-test'\r\n    testImplementation 'org.springframework.security:spring-security-test'\r\n    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'\r\n\r\n\r\n\r\n\r\n    //implementation 'com.azure.spring:spring-cloud-azure-starter-active-directory'\r\n    //implementation 'com.azure.spring:spring-cloud-azure-starter-actuator'\r\n}\r\n\r\n//dependencyManagement {\r\n//    imports {\r\n//        mavenBom \"com.azure.spring:spring-cloud-azure-dependencies:${springCloudAzureVersion}\"\r\n//    }\r\n//}\r\n\r\ntasks.named('test') {\r\n    useJUnitPlatform()\r\n}\r\n"
+        }
+    ]
+}
